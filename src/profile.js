@@ -55,6 +55,10 @@ function Profile() {
     }
 
 
+    const handleAddGameClick = () => {
+        navigate('/newGame')
+    }
+
     const handleImageClick = (e, id) => {
         e.preventDefault()
 
@@ -63,6 +67,7 @@ function Profile() {
 
     return(
         <div>
+            <button className='addButton' onClick={handleAddGameClick}>Add Game</button>
             {user? <h1>{user.firstName}'s game library</h1> : <h1>Loading</h1>}
             <p>Done with a game? Hit <button>Remove</button> under it to remove it from your list</p>
             <div className="gameDisplay">

@@ -6,11 +6,11 @@ import Games from './Games';
 import LogIn from './logIn';
 import Profile from './profile';
 import GameForm from './GameForm';
-import SingleGame from './SingleGame';
 import LogInForm from './LogInForm';
 import logo from './Randomizer.png';
 import SignUp from './SignUp';
 import GameInfo from './GameInfo';
+import User from './User';
 
 
 
@@ -66,9 +66,9 @@ const logIn = (email, password) => {
       <Routes>
         <Route path="/games" element={<Games />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/newGame" element={<GameForm />} />"
-        <Route path="/play" element={<SingleGame />} />
+        <Route path="/newGame" element={<GameForm />} />
         <Route path="/game/:id" element={<GameInfo />} />
+        <Route path="/user/:id" element={<User />} />
         <Route path="*" element={<Navigate to ="/" replace/>} />
       </Routes>
     )
@@ -93,7 +93,7 @@ const logIn = (email, password) => {
       <nav className="navbar">
         {isLoggedIn? (
           <>
-          <NavLink activeclassname="active" to="/games"><h3 className="text-link">All Games</h3></NavLink>
+          <NavLink activeclassname="active" to="/games"><h3 className="text-link">User Profiles</h3></NavLink>
           <NavLink activeclassname="active" to="/profile"><h3 className="text-link">Profile</h3></NavLink>
           <button onClick={logOut}><h3 className="text-link">Sign Out</h3></button>
           </>

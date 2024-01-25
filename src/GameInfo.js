@@ -24,22 +24,17 @@ console.log(id)
         return(
             <>
             {game? 
-            <h1>{game.title}</h1> : <h1>Loading</h1>}
+            <div className="singleGameDisplay">
+                <img className="currentGame" src={game.image} alt={game.title} />
+                <p className='title'>{game.title}</p>
+                <p className='platform'>{game.platform}</p>
+            </div>            
+            : <h1>Loading</h1>}
             </>
         )
         
         } 
 
-// <div className='singleGame'>
-//                     <div className="singleGameDisplay">
-//                         <img className="currentGame" src={game.image} alt={game.title} />
-//                             <p className='title'>{game.title}</p>
-//                             <p className='platform'>{game.platform}</p>
-//                         </div>
-//                     <p>Not happy with {game.title}?</p>
-//                     <p>Give it another try!</p>
-//                     <button className='randomizeAgain'>Randomize Again</button>
-//                 </div>
 
 export default SingleGame
 
