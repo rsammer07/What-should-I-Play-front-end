@@ -49,8 +49,6 @@ const GameForm = (e) => {
             console.error(err)
         })
         navigate("/profile")
-
-
     }
 
 
