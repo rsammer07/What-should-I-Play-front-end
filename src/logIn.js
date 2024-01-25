@@ -9,10 +9,6 @@ function LogIn() {
     }
 
 
-    const handleLogOutClick = () => {
-        
-    }
-
     return(
         <div className="welcome">
             <h1>Welcome Gamers!</h1>
@@ -23,9 +19,6 @@ function LogIn() {
             </div>
                 <p className="explain">To get started, Please Log in/Sign up. Add games to your list or add new games to the database. Once thats done, let us decide what you should play tonight! You'll thank me later!</p>
                 <h1>Game on!</h1>
-            <div className="logOut-button">
-                <button className="logOut">Sign Out</button>
-            </div>
         </div>
         
     )

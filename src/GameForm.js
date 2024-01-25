@@ -9,23 +9,25 @@ const GameForm = (e) => {
     const [title, setTitle] = useState('')
     const [platform, setPlatform] = useState('')
     const [image, setImage] = useState('')
+    // const [user, setUser] = useState(null)
+    const [game, setGame] = useState([])
     const navigate = useNavigate();
 
 
 
-    const onSubmitHandler = async (e) => {
-        e.preventDefault()
-        console.log('submitting form')
-
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        console.log('submitting form');
+    
         const newGame = {
             title,
             platform,
             image
-        }
-        const localStorData = JSON.parse(localStorage.getItem("userData"))
-        console.log(localStorData.token)
-        const token = localStorData.token
-        console.log(token)
+        };
+    
+        const localStorData = JSON.parse(localStorage.getItem("userData"));
+        const token = localStorData.token;
+    
         const options = {
             method: 'POST',
             withCredentials: true,
@@ -34,22 +36,27 @@ const GameForm = (e) => {
                 Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(newGame)
-        }
-
+        };
+    
         fetch("http://localhost:8080/games/newGame", options)
-        .then((res) => {
-            if (!res.ok) {
-                return console.error("error creating a new game")
-            }
-            res.json().then((data) => {
-                console.log(data)
-            })
-        })
-        .catch((err) => {
-            console.error(err)
-        })
-        navigate("/profile")
-    }
+    .then((res) => {
+        if (!res.ok) {
+            console.error("Error creating a new game");
+            return;
+        }
+        return res.json();
+    })
+    .then((data) => {
+        console.log(data);
+        setGame((prevGames) => [...prevGames, data]);
+        
+    })
+    .catch((err) => {
+        console.error("Error during fetch:", err);
+    });
+
+     navigate("/profile")
+    };
 
 
     

@@ -4,17 +4,17 @@ import { useState } from 'react';
 
 
 
-const SignUp = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+const SignUp = (props) => {
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
 
 
 const onSubmitHandler = async (e) => {
+    console.log(props)
     e.preventDefault()
-    console.log(firstName, lastName, email, password)
+    console.log(username, email, password)
     fetch('http://localhost:8080/users/signup', {
         method: 'POST',
         withCredentials: true,
@@ -22,8 +22,7 @@ const onSubmitHandler = async (e) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            firstName,
-            lastName,
+            username,
             email,
             password
         })
@@ -34,6 +33,7 @@ const onSubmitHandler = async (e) => {
             localStorage.setItem('userData', JSON.stringify({ userId: data.id, token: data.token, userData: data }))
         })
     })
+    props.logIn(email, password)
 }
     const onChangeHandler = (e, setValue) => {
         console.log(e.target.value)
@@ -44,18 +44,12 @@ const onSubmitHandler = async (e) => {
         <div>
             <h1>Sign Up</h1>
                 <form className="signUp-form" onSubmit={(e) => onSubmitHandler(e)}>
-                    <label htmlFor="firstname">First name</label>
+                    <label htmlFor="userName">Username</label>
                     <input 
                     type="text" 
-                    id="firstname" 
-                    name="firstname"  
-                    onChange={(e) => onChangeHandler(e, setFirstName)}/>
-                    <label htmlFor="lastname">Last name</label>
-                    <input 
-                    type="text" 
-                    id="lastname" 
-                    name="lastname" 
-                    onChange={(e) => onChangeHandler(e, setLastName)}/>
+                    id="username" 
+                    name="username"  
+                    onChange={(e) => onChangeHandler(e, setUsername)}/>
                     <label htmlFor="email">Email</label>
                     <input 
                     type="text" 

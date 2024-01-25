@@ -33,7 +33,7 @@ function Games() {
                     users.map((user) => {
                         return (
                             <div className='userProfile'>
-                                <p className='firstName' onClick={(e) => handleFirstNameClick(e, user._id)}>{user.firstName}'s profile</p>
+                                <p className='firstName' onClick={(e) => handleFirstNameClick(e, user._id)}>{user.username}'s profile</p>
                                 <p className='gameCount'>{user.games.length} games</p>
                             </div>
                         )

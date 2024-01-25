@@ -9,26 +9,24 @@ function Profile() {
     
     useEffect(() => {
         const getSingleUser = async () => {
-            const localStorData = JSON.parse(localStorage.getItem("userData"))
-            console.log(localStorData)
-
-
-
-            if(localStorData) {
-                const userId = localStorData.userData.user._id
-            fetch(`http://localhost:8080/users/${userId}`)
-            .then((res) => res.json()).then((data) => {
-                setUser(data)
-                setGames(data.games)
+            const localStorData = JSON.parse(localStorage.getItem("userData"));
+    
+            if (localStorData) {
+                const userId = localStorData.userData.user._id;
+                const userDataRes = await fetch(`http://localhost:8080/users/${userId}`);
+                const userData = await userDataRes.json();
+    
+                setUser(userData);
+                setGames(userData.games);
             }
-
-            )}
-        }
-        getSingleUser()
-    }, [])
+        };
+    
+        getSingleUser();
+    }, []);
+    
 
     const handleRandomizeClick = () => {
-        const rGame = games[Math.floor(Math.random() * games.length - 1)]
+        const rGame = games[Math.floor(Math.random() * games.length) -1]
         console.log(rGame)
         navigate(`/game/${rGame._id}`)
 
@@ -37,27 +35,58 @@ function Profile() {
     }
 
 
-     const handleRemoveClick = (e) => {
+     const handleRemoveClick = (e, id) => {
         e.preventDefault()
-        console.log('removing game')
-    //fetch game by Id first to remove it
-    //then fetch user by ID to remove that game id from user's game array
+        console.log("removing game")
+            const localStorData = JSON.parse(localStorage.getItem("userData"))
+            const token = localStorData.token
+            console.log(token)
+            const options = {
+                method: 'DELETE',
+                withCredentials: true,
+                headers: {
+                    "Content-Type": "application/json",
 
-
-    //     fetch('http://localhost:8080/users/profile', {
-    //         method: 'PUT',
-    //         withCredentials: true,
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-
-    //     })
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            fetch(`http://localhost:8080/games/${id}`, options)
+            .then((res) => {
+                if (!res.ok) {
+                    return console.error("error deleting game")
+                }
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+            window.location.reload()
     }
 
 
-    const handleAddGameClick = () => {
-        navigate('/newGame')
-    }
+    const handleAddGameClick = async () => {
+        try {
+            navigate('/newGame');
+            
+            const localStorData = JSON.parse(localStorage.getItem("userData"));
+            const userId = localStorData.userData.user._id;
+        
+            const userDataRes = await fetch(`http://localhost:8080/users/${userId}`);
+            
+            if (!userDataRes.ok) {
+                console.error("Error fetching user data");
+                return;
+            }
+    
+            const userData = await userDataRes.json();
+            
+            setUser(userData);
+            setGames(userData.games);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
+    
 
     const handleImageClick = (e, id) => {
         e.preventDefault()
@@ -68,7 +97,7 @@ function Profile() {
     return(
         <div>
             <button className='addButton' onClick={handleAddGameClick}>Add Game</button>
-            {user? <h1>{user.firstName}'s game library</h1> : <h1>Loading</h1>}
+            {user? <h1>{user.username}'s game library</h1> : <h1>Loading</h1>}
             <p>Done with a game? Hit <button>Remove</button> under it to remove it from your list</p>
             <div className="gameDisplay">
                 {user? (
@@ -79,7 +108,7 @@ function Profile() {
                                 <p className="title">{game.title}</p>
                                 <p className="platform">Platform: {game.platform}</p>
                                 <div className="buttonContainer"> 
-                                    <button className="removeButton" id={game._id} onClick={handleRemoveClick}>Remove</button>                             
+                                    <button className="removeButton" onClick={(e) => handleRemoveClick(e, game._id)}>Remove</button>                             
                                 </div>
                             </div>
                         )
@@ -93,6 +122,5 @@ function Profile() {
         
     )
 }
-
 
 export default Profile
