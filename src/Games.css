@@ -1,0 +1,27 @@
+.gameCover {
+    width: 185px;
+    height: 200px;
+    
+  }
+
+.gameCover:hover {
+  cursor: pointer;
+}
+
+
+.gameDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin: 50px;
+}
+
+div {
+  text-align: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
