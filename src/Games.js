@@ -9,7 +9,7 @@ function Games() {
     const navigate = useNavigate();
     useEffect(() => {
         const fetchAllUsers = async (req, res)  => {
-            fetch('https://safe-tundra-63118-5217aa5f3429.herokuapp.com/users')
+            fetch('https://git.heroku.com/whatshouldiplaybackend/users')
             .then((res) => res.json()).then((data) => {
                 console.log(data)
                 setUsers(data)

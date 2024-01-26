@@ -15,7 +15,7 @@ const onSubmitHandler = async (e) => {
     console.log(props)
     e.preventDefault()
     console.log(username, email, password)
-    fetch('http://safe-tundra-63118-5217aa5f3429.herokuapp.com/users/signup', {
+    fetch('http://git.heroku.com/whatshouldiplaybackend/users/signup', {
         method: 'POST',
         withCredentials: true,
         headers: {

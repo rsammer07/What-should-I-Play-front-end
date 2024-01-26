@@ -11,7 +11,7 @@ console.log(id)
 
     useEffect( () => {
         const getSingleGame = async () => {
-            fetch(`http://safe-tundra-63118-5217aa5f3429.herokuapp.com/games/${id}`)
+            fetch(`http://git.heroku.com/whatshouldiplaybackend/games/${id}`)
             .then((res) => res.json()).then((data) => {
                 setGame(data)
                 console.log(game)
