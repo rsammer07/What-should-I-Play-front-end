@@ -10,7 +10,7 @@ const UserDisplay = () => {
 
     useEffect( () => {
         const getSingleUser = async () => {
-            fetch(`http://localhost:8080/users/${id}`)
+            fetch(`http://safe-tundra-63118-5217aa5f3429.herokuapp.com/users/${id}`)
             .then((res) => res.json()).then((data) => {
                 setUser(data)
                 console.log(user)

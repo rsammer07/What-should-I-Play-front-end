@@ -38,7 +38,7 @@ const GameForm = (e) => {
             body: JSON.stringify(newGame)
         };
     
-        fetch("http://localhost:8080/games/newGame", options)
+        fetch("https://safe-tundra-63118-5217aa5f3429.herokuapp.com/newGame", options)
     .then((res) => {
         if (!res.ok) {
             console.error("Error creating a new game");

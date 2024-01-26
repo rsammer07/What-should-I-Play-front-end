@@ -13,7 +13,7 @@ function Profile() {
     
             if (localStorData) {
                 const userId = localStorData.userData.user._id;
-                const userDataRes = await fetch(`http://localhost:8080/users/${userId}`);
+                const userDataRes = await fetch(`http://safe-tundra-63118-5217aa5f3429.herokuapp.com/users/${userId}`);
                 const userData = await userDataRes.json();
     
                 setUser(userData);
@@ -50,7 +50,7 @@ function Profile() {
                     Authorization: `Bearer ${token}`
                 }
             }
-            fetch(`http://localhost:8080/games/${id}`, options)
+            fetch(`http://safe-tundra-63118-5217aa5f3429.herokuapp.com/games/${id}`, options)
             .then((res) => {
                 if (!res.ok) {
                     return console.error("error deleting game")
@@ -70,7 +70,7 @@ function Profile() {
             const localStorData = JSON.parse(localStorage.getItem("userData"));
             const userId = localStorData.userData.user._id;
         
-            const userDataRes = await fetch(`http://localhost:8080/users/${userId}`);
+            const userDataRes = await fetch(`http://safe-tundra-63118-5217aa5f3429.herokuapp.com/users/${userId}`);
             
             if (!userDataRes.ok) {
                 console.error("Error fetching user data");

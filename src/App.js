@@ -28,7 +28,7 @@ const logOut = () => {
 
 const logIn = (email, password) => {
   console.log("logging in")
-  fetch('http://localhost:8080/users/login', {
+  fetch('http://safe-tundra-63118-5217aa5f3429.herokuapp.com/users/login', {
             method: 'POST',
             withCredentials: true,
             headers: {
