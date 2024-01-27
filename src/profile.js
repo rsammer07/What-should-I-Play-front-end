@@ -13,7 +13,7 @@ function Profile() {
     
             if (localStorData) {
                 const userId = localStorData.userData.user._id;
-                const userDataRes = await fetch(`http://git.heroku.com/whatshouldiplaybackend/users/${userId}`);
+                const userDataRes = await fetch(`https://whatshouldiplaybackend-e19df83c93a5.herokuapp.com/users/${userId}`);
                 const userData = await userDataRes.json();
     
                 setUser(userData);
@@ -29,9 +29,6 @@ function Profile() {
         const rGame = games[Math.floor(Math.random() * games.length) -1]
         console.log(rGame)
         navigate(`/game/${rGame._id}`)
-
-
-        //TODO from the back end, to fetch random game fetch user by Id and select rando game from users game array
     }
 
 
@@ -50,7 +47,7 @@ function Profile() {
                     Authorization: `Bearer ${token}`
                 }
             }
-            fetch(`http://git.heroku.com/whatshouldiplaybackend/games/${id}`, options)
+            fetch(`https://whatshouldiplaybackend-e19df83c93a5.herokuapp.com/games/${id}`, options)
             .then((res) => {
                 if (!res.ok) {
                     return console.error("error deleting game")
@@ -59,31 +56,12 @@ function Profile() {
             .catch((err) => {
                 console.error(err)
             })
-            window.location.reload()
+            // window.location.reload()
     }
 
 
     const handleAddGameClick = async () => {
-        try {
-            navigate('/newGame');
-            
-            const localStorData = JSON.parse(localStorage.getItem("userData"));
-            const userId = localStorData.userData.user._id;
-        
-            const userDataRes = await fetch(`http://git.heroku.com/whatshouldiplaybackend/users/${userId}`);
-            
-            if (!userDataRes.ok) {
-                console.error("Error fetching user data");
-                return;
-            }
-    
-            const userData = await userDataRes.json();
-            
-            setUser(userData);
-            setGames(userData.games);
-        } catch (error) {
-            console.error(error);
-        }
+        navigate('/newGame')
     };
     
     

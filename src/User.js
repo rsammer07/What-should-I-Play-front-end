@@ -10,7 +10,7 @@ const UserDisplay = () => {
 
     useEffect( () => {
         const getSingleUser = async () => {
-            fetch(`http://git.heroku.com/whatshouldiplaybackend/users/${id}`)
+            fetch(`https://whatshouldiplaybackend-e19df83c93a5.herokuapp.com/users/${id}`)
             .then((res) => res.json()).then((data) => {
                 setUser(data)
                 console.log(user)

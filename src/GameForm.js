@@ -38,7 +38,7 @@ const GameForm = (e) => {
             body: JSON.stringify(newGame)
         };
     
-        fetch("https://git.heroku.com/whatshouldiplaybackend/newGame", options)
+        fetch("https://whatshouldiplaybackend-e19df83c93a5.herokuapp.com/games/newgame", options)
     .then((res) => {
         if (!res.ok) {
             console.error("Error creating a new game");
