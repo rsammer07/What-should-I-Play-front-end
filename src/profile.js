@@ -56,7 +56,8 @@ function Profile() {
             .catch((err) => {
                 console.error(err)
             })
-            // window.location.reload()
+
+            //TODO: write a filter function to pull the game out of the array on the users page
     }
 
 
@@ -64,6 +65,9 @@ function Profile() {
         navigate('/newGame')
     };
     
+
+//TODO: write a function to add new game into the user.games array
+
     
 
     const handleImageClick = (e, id) => {

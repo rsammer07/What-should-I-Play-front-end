@@ -23,7 +23,7 @@ const UserDisplay = () => {
 
     return (
         <div>
-            {user? <h1>{user.firstName}'s game library</h1> : <h1>Loading</h1>}
+            {user? <h1>{user.username}'s game library</h1> : <h1>Loading</h1>}
             <div className="gameDisplay">
                 {user? (
                     user.games.map((game) => {
