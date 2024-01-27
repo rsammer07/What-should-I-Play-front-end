@@ -1,6 +1,6 @@
 import "./SignUp.css"
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -8,7 +8,7 @@ const SignUp = (props) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
 
 
 const onSubmitHandler = async (e) => {
@@ -33,7 +33,7 @@ const onSubmitHandler = async (e) => {
             localStorage.setItem('userData', JSON.stringify({ userId: data.id, token: data.token, userData: data }))
         })
     })
-    props.logIn(email, password)
+    navigate('/logIn')
 }
     const onChangeHandler = (e, setValue) => {
         console.log(e.target.value)
